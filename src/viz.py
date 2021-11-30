@@ -9,7 +9,7 @@ import folium
 from folium.plugins import HeatMap, HeatMapWithTime
 import clean
 
-def make_compbars(df1, df2, title1, title2, order1, order2):
+def make_compbars(df1, df2, title1, title2, order1, order2, save=False):
     fig, ax=plt.subplots(2, 1,  figsize=(12, 6))
 
     sns.countplot(x=df1["Start Station"],
@@ -26,8 +26,14 @@ def make_compbars(df1, df2, title1, title2, order1, order2):
     ax[1].set_xlabel('Station')
     ax[1].set_ylabel('Trip Count')
 
-    fig.tight_layout()
-    plt.show()
+    plt.tight_layout()
+    if save:
+        utitle1 = title1[:6].replace(' ', '_')
+        utitle2 = title2[:6].replace(' ', '_', 2)
+        plt.savefig('/Users/Diogenes/Documents/take_homes/BikeShare/images/'+utitle1+utitle2, dpi=125)
+    
+    else:
+        plt.show()
 
 def make_groupbars(df, incr, title, xticklabels, xlabel):
     
@@ -175,12 +181,12 @@ if __name__ == '__main__':
 
     xlabels = ['Day of Week', 'Weekend Day', 'Month of Year']
     
-    # make_compbars(dfs[1], dfs[1], titles[0], titles[1], orders[0], orders[1])
-    # make_compbars(dfs[5], dfs[4], titles[2], titles[3], orders[2], orders[3])
+    # make_compbars(dfs[1], dfs[1], titles[0], titles[1], orders[0], orders[1], save=True)
+    make_compbars(dfs[5], dfs[4], titles[2], titles[3], orders[2], orders[3], save=True)
     # make_groupbars(dfs[1], increments[2], titles[7], xticklabels[3], xlabels[2])
     # stat_map = make_map(dfs[0], titles[8])
     # stat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_map.html')
     # heat_map = make_heatmap(heat_lst, titles[10], df= None, time= False)
     # heat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_heatmap.html')
-    temp_heat_map = make_heatmap(heat_lst, titles[9], df= heat_df, time= True)
-    temp_heat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_heatmap_wTime.html')
+    # temp_heat_map = make_heatmap(heat_lst, titles[9], df= heat_df, time= True)
+    # temp_heat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_heatmap_wTime.html')
