@@ -67,8 +67,25 @@ def clean_trips_data_for_viz(df):
 
     return clean_df, weekends, weekdays
 
+def list_for_heatmap(stat_df, trip_df):
+
+    '''Takes stations and trips data frames, aggregates sum of trips per station
+       and returns list of lat/long coordinates and trip count for each station
+       and data frame to construct heatmap with timeseries data'''
+
+    statlat = stat_df[['Id', 'Lat', 'Long']]
+    tripslat = trip_df[['Start Date', 'Start Station', 'month', 'day', 'hour']].merge(statlat,
+                                                                                left_on='Start Station',
+                                                                                right_on='Id')
+    tripslat['count'] = 1
+    tripscount = pd.DataFrame(tripslat.groupby(['Start Station',
+                                                'Lat',
+                                                'Long'])
+                            ['count'].sum().sort_values(ascending=False))
+    lst = tripscount.groupby(['Lat', 'Long']).sum().reset_index().values.tolist()
+    return lst, tripslat
 
 if __name__ == '__main__':
     stations, trips, weather = retrieve_data()
     clean_df, weekends, weekdays = clean_trips_data_for_viz(trips)
-    
+    heat_lst, heat_df = list_for_heatmap(stations, trips)

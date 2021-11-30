@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_e347cc9a713645d9b0049d389afefdda {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+    <script src="https://cdn.jsdelivr.net/gh/python-visualization/folium@master/folium/templates/leaflet_heat.min.js"></script>
+</head>
+<body>    
+    
+                     <h3 align="center" style="font-size:16px"><b>Bay Area BikeShare Most Popular Stations</b></h3>
+                     
+    
+            <div class="folium-map" id="map_e347cc9a713645d9b0049d389afefdda" ></div>
+        
+</body>
+<script>    
+    
+            var map_e347cc9a713645d9b0049d389afefdda = L.map(
+                "map_e347cc9a713645d9b0049d389afefdda",
+                {
+                    center: [37.56236, -122.150876],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 10,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_b852e11cad144d22a6efb7fe268bbe67 = L.tileLayer(
+                "https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"http://cartodb.com/attributions\"\u003eCartoDB\u003c/a\u003e, CartoDB \u003ca href =\"http://cartodb.com/attributions\"\u003eattributions\u003c/a\u003e", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_e347cc9a713645d9b0049d389afefdda);
+        
+    
+            var heat_map_ea4e80bead824c898270f95553434fc0 = L.heatLayer(
+                [[37.329732, -121.901782, 4968.0], [37.330165, -121.885831, 495.0], [37.330698, -121.888979, 774.0], [37.331415, -121.8932, 562.0], [37.332692, -121.900084, 647.0], [37.332808, -121.883891, 475.0], [37.333798, -121.886943, 856.0], [37.333955, -121.877349, 494.0], [37.333988, -121.894902, 1958.0], [37.335885, -121.88566, 1099.0], [37.336721, -121.894074, 1418.0], [37.337391, -121.886995, 832.0], [37.339301, -121.889937, 839.0], [37.342725, -121.895617, 1120.0], [37.348742, -121.894715, 885.0], [37.352601, -121.905733, 534.0], [37.385956, -122.083678, 1230.0], [37.389218, -122.081896, 1583.0], [37.390277, -122.066553, 978.0], [37.394358, -122.076713, 3580.0], [37.400241, -122.099076, 501.0], [37.400443, -122.108338, 1069.0], [37.40694, -122.106758, 1058.0], [37.4256839, -122.1377775, 376.0], [37.429082, -122.142805, 400.0], [37.443988, -122.164759, 1116.0], [37.444521, -122.163093, 605.0], [37.448598, -122.159504, 576.0], [37.481758, -122.226904, 81.0], [37.48537, -122.203288, 536.0], [37.486078, -122.232089, 895.0], [37.486725, -122.225551, 18.0], [37.487616, -122.229951, 127.0], [37.487682, -122.223492, 150.0], [37.491269, -122.236234, 212.0], [37.771058, -122.402717, 13752.0], [37.774814, -122.418954, 5876.0], [37.7766, -122.39547, 21758.0], [37.776617, -122.39526, 26304.0], [37.776619, -122.417385, 11885.0], [37.77865, -122.418235, 2052.0], [37.780526, -122.390288, 14026.0], [37.781039, -122.411748, 7760.0], [37.781332, -122.418603, 3646.0], [37.781752, -122.405127, 7708.0], [37.782259, -122.392738, 9469.0], [37.783871, -122.408433, 9695.0], [37.784878, -122.401014, 5523.0], [37.785299, -122.396236, 7999.0], [37.786305, -122.404966, 9894.0], [37.786978, -122.398108, 6660.0], [37.787152, -122.388013, 7483.0], [37.788446, -122.408499, 6425.0], [37.788975, -122.403452, 4705.0], [37.789625, -122.400811, 11431.0], [37.789756, -122.394643, 14436.0], [37.790302, -122.390637, 5574.0], [37.7913, -122.399051, 6131.0], [37.791464, -122.391034, 7596.0], [37.792251, -122.397086, 8359.0], [37.794139, -122.394434, 13687.0], [37.794231, -122.402923, 6014.0], [37.795001, -122.39997, 5040.0], [37.795392, -122.394203, 17255.0], [37.795425, -122.404767, 2660.0], [37.79728, -122.398436, 5094.0], [37.798522, -122.407245, 8337.0], [37.798541, -122.400862, 7676.0], [37.799953, -122.398525, 5037.0], [37.80477, -122.403234, 14158.0]],
+                {"blur": 15, "maxZoom": 18, "minOpacity": 0.5, "radius": 12}
+            ).addTo(map_e347cc9a713645d9b0049d389afefdda);
+        
+</script>

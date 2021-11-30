@@ -1,9 +1,12 @@
 import pandas as pd
 import numpy as np
+import datetime as dt
 
 import matplotlib.pyplot as plt
 import matplotlib as mlp
 import seaborn as sns
+import folium
+from folium.plugins import HeatMap, HeatMapWithTime
 import clean
 
 def make_compbars(df1, df2, title1, title2, order1, order2):
@@ -66,10 +69,79 @@ def sortedgroupedbar(ax, x,y, groupby, xlabel, data=None, width=0.8, **kwargs):
     ax.set_xlabel(xlabel)
     ax.set_ylabel('Trip Count')
 
-    
+def make_map(stat_df, title):
+    stations_lst = stat_df.Id.to_list()
+    coords_lst = list(zip(stat_df.Lat, stat_df.Long))
+    names = stat_df.Name.to_list()
+    station_names = list(zip(stations_lst, names))
+    coords = list(zip(coords_lst, station_names))
+
+    title_html = '''
+                <h3 align="center" style="font-size:16px"><b>{}</b></h3>
+                '''.format(title)
+    map = folium.Map(location=[37.56236, -122.150876], 
+                            tiles='cartodbpositron',
+                            zoom_start=10)
+    map.get_root().html.add_child(folium.Element(title_html))
+
+    for point, station in coords:
+        marker = folium.Marker(location=point,
+                                popup=station[1],
+                                icon=folium.Icon(color='blue',icon='bicycle', prefix='fa'),
+                                tooltip=station[0])
+        marker.add_to(map)
+
+    return map
+
+def make_heatmap(lst, title, df= None, time= False):
+    if time:
+        df_hour_list = []
+
+        for hour in df['hour'].sort_values().unique(): 
+            df_hour_list.append(df.loc[df['hour'] == hour,
+                                            ['Lat', 'Long', 'count']].groupby(['Lat', 'Long'])
+                                .sum().reset_index().values.tolist())
+        title_html = '''
+                      <h3 align="center" style="font-size:16px"><b>{}</b></h3>
+                     '''.format(title)
+
+        temp_heat_map = folium.Map(location=[37.56236, -122.150876], 
+                                tiles='cartodbpositron',
+                                zoom_start=10)
+        start = dt.datetime(2021,1,1,0)
+        end = dt.datetime(2021,1,1,23)
+        daterange = pd.date_range(start=start,
+                                  end=end,
+                                  periods=24)
+
+        time_index = [d.strftime("%I:%M %p") for d in daterange]
+
+        HeatMapWithTime(df_hour_list,radius=11,
+                        index=time_index,
+                        gradient={0.1: 'blue', 0.5: 'lime', 0.7: 'orange', 1: 'red'}, 
+                        min_opacity=0.4, 
+                        max_opacity=0.8, 
+                        use_local_extrema=True)\
+                        .add_to(temp_heat_map)
+
+        return temp_heat_map
+    else:
+        title_html = '''
+                     <h3 align="center" style="font-size:16px"><b>{}</b></h3>
+                     '''.format(title)
+
+        heat_map = folium.Map(location=[37.56236, -122.150876], 
+                                tiles='cartodbpositron',
+                                zoom_start=10)
+        heat_map.get_root().html.add_child(folium.Element(title_html))
+        HeatMap(data=lst, radius=12).add_to(heat_map)
+        return heat_map
+
+
 if __name__ == '__main__':
     stations, trips, weather = clean.retrieve_data()
     clean_df, weekends, weekdays = clean.clean_trips_data_for_viz(trips)
+    heat_lst, heat_df = clean.list_for_heatmap(stations, trips)
     
     dfs = [stations, trips, weather, clean_df, weekends, weekdays]
 
@@ -80,7 +152,10 @@ if __name__ == '__main__':
               'Top Weekday Stations by Trip Count',
               'Top Stations by Daily Trip Count',
               'Top Weekend Stations by Trip Count',
-              'Top Stations by Monthly Trip Count']
+              'Top Stations by Monthly Trip Count',
+              'Bay Area BikeShare Station Map',
+              'Bay Area BikeShare Station Use by Time of Day',
+              'Bay Area BikeShare Most Popular Stations']
 
     orders = [dfs[1]['Start Station'].value_counts().index[:5],
               dfs[1]['Start Station'].value_counts(ascending=True).index[:5],
@@ -102,4 +177,10 @@ if __name__ == '__main__':
     
     # make_compbars(dfs[1], dfs[1], titles[0], titles[1], orders[0], orders[1])
     # make_compbars(dfs[5], dfs[4], titles[2], titles[3], orders[2], orders[3])
-    make_groupbars(dfs[1], increments[2], titles[7], xticklabels[3], xlabels[2])
+    # make_groupbars(dfs[1], increments[2], titles[7], xticklabels[3], xlabels[2])
+    # stat_map = make_map(dfs[0], titles[8])
+    # stat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_map.html')
+    # heat_map = make_heatmap(heat_lst, titles[10], df= None, time= False)
+    # heat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_heatmap.html')
+    temp_heat_map = make_heatmap(heat_lst, titles[9], df= heat_df, time= True)
+    temp_heat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_heatmap_wTime.html')
