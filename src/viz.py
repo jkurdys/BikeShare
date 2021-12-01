@@ -35,7 +35,7 @@ def make_compbars(df1, df2, title1, title2, order1, order2, save=False):
     else:
         plt.show()
 
-def make_groupbars(df, incr, title, xticklabels, xlabel):
+def make_groupbars(df, incr, title, xticklabels, xlabel, save=False):
     
     tdf = df.groupby([incr, 'Start Station']).size().reset_index(name='counts')
     tdfsrt = tdf.sort_values(['counts'], ascending=False)
@@ -50,8 +50,13 @@ def make_groupbars(df, incr, title, xticklabels, xlabel):
     ax.set_title(title)
     ax.set_xticklabels(xticklabels)
 
-    fig.tight_layout()
-    plt.show()
+    plt.tight_layout()
+    
+    if save:
+        title = title[:13].replace(' ', '_')
+        plt.savefig('/Users/Diogenes/Documents/take_homes/BikeShare/images/'+ incr + '_' + title + 'group', dpi=125)
+    else:
+        plt.show()
 
 def sortedgroupedbar(ax, x,y, groupby, xlabel, data=None, width=0.8, **kwargs):
     order = np.zeros(len(data))
@@ -143,6 +148,26 @@ def make_heatmap(lst, title, df= None, time= False):
         HeatMap(data=lst, radius=12).add_to(heat_map)
         return heat_map
 
+def group_plot(df, incr, agg_func, xticklabels,  xlabel, ylabel, title, save=False):
+    '''
+    Takes a dataframe, a list of columns to groupby, an aggregation function for the groups, 
+    3 strings: label of x-axis, label of y-axis and title returns a line plot
+    Plots the data with labels and title.
+    '''
+    
+    group= getattr(df.groupby(incr), agg_func)()/1000
+    ax= group.plot(figsize=(12,8), rot=70, fontsize=11)        
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    ax.set_xticks(list(range(len(xticklabels))))
+    ax.set_title(title)
+    ax.set_xticklabels(xticklabels)
+    if save:
+        title = title[:12].replace(' ', '_')
+        plt.savefig('/Users/Diogenes/Documents/take_homes/BikeShare/images/' + title + 'plot', dpi=125)
+    else:
+        plt.show()
+
 
 if __name__ == '__main__':
     stations, trips, weather = clean.retrieve_data()
@@ -161,7 +186,8 @@ if __name__ == '__main__':
               'Top Stations by Monthly Trip Count',
               'Bay Area BikeShare Station Map',
               'Bay Area BikeShare Station Use by Time of Day',
-              'Bay Area BikeShare Most Popular Stations']
+              'Bay Area BikeShare Most Popular Stations',
+              'Weekday trip count by hour of day (thousands)']
 
     orders = [dfs[1]['Start Station'].value_counts().index[:5],
               dfs[1]['Start Station'].value_counts(ascending=True).index[:5],
@@ -182,11 +208,13 @@ if __name__ == '__main__':
     xlabels = ['Day of Week', 'Weekend Day', 'Month of Year']
     
     # make_compbars(dfs[1], dfs[1], titles[0], titles[1], orders[0], orders[1], save=True)
-    make_compbars(dfs[5], dfs[4], titles[2], titles[3], orders[2], orders[3], save=True)
-    # make_groupbars(dfs[1], increments[2], titles[7], xticklabels[3], xlabels[2])
+    # make_compbars(dfs[5], dfs[4], titles[2], titles[3], orders[2], orders[3], save=True)
+    # make_groupbars(dfs[1], increments[2], titles[7], xticklabels[3], xlabels[2], save=True)
+    # make_groupbars(dfs[1], increments[1], titles[5], xticklabels[1], xlabels[0], save=True)
     # stat_map = make_map(dfs[0], titles[8])
     # stat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_map.html')
     # heat_map = make_heatmap(heat_lst, titles[10], df= None, time= False)
     # heat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_heatmap.html')
     # temp_heat_map = make_heatmap(heat_lst, titles[9], df= heat_df, time= True)
     # temp_heat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_heatmap_wTime.html')
+    group_plot(dfs[1],increments[1], 'size', xticklabels[1], xlabels[0], 'Trip Count', titles[11], save=True)
