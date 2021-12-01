@@ -159,9 +159,9 @@ def group_plot(df, incr, agg_func, xticklabels,  xlabel, ylabel, title, save=Fal
     ax= group.plot(figsize=(12,8), rot=70, fontsize=11)        
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
-    ax.set_xticks(list(range(len(xticklabels))))
+    # ax.set_xticks(list(range(len(xticklabels))))
     ax.set_title(title)
-    ax.set_xticklabels(xticklabels)
+    # ax.set_xticklabels(xticklabels)
     if save:
         title = title[:12].replace(' ', '_')
         plt.savefig('/Users/Diogenes/Documents/take_homes/BikeShare/images/' + title + 'plot', dpi=125)
@@ -187,6 +187,8 @@ if __name__ == '__main__':
               'Bay Area BikeShare Station Map',
               'Bay Area BikeShare Station Use by Time of Day',
               'Bay Area BikeShare Most Popular Stations',
+              'Daily trips by day of week (thousands)',
+              'Trip count by month (thousands)',
               'Weekday trip count by hour of day (thousands)']
 
     orders = [dfs[1]['Start Station'].value_counts().index[:5],
@@ -200,12 +202,17 @@ if __name__ == '__main__':
     for i in range(trips.month.max()):
         months.append(f'{i + 1}')
 
+    hours = []
+    for i in range(trips.hour.max()):
+        months.append(f'{i + 1}')
+
     xticklabels = [['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
                    ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
                    ['Saturday', 'Sunday'],
-                   months]
+                   months,
+                   hours]
 
-    xlabels = ['Day of Week', 'Weekend Day', 'Month of Year']
+    xlabels = ['Day of Week', 'Weekend Day', 'Month of Year', 'Hour of the Day']
     
     # make_compbars(dfs[1], dfs[1], titles[0], titles[1], orders[0], orders[1], save=True)
     # make_compbars(dfs[5], dfs[4], titles[2], titles[3], orders[2], orders[3], save=True)
@@ -217,4 +224,5 @@ if __name__ == '__main__':
     # heat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_heatmap.html')
     # temp_heat_map = make_heatmap(heat_lst, titles[9], df= heat_df, time= True)
     # temp_heat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_heatmap_wTime.html')
-    group_plot(dfs[1],increments[1], 'size', xticklabels[1], xlabels[0], 'Trip Count', titles[11], save=True)
+    # group_plot(dfs[1],increments[1], 'size', xticklabels[1], xlabels[0], 'Trip Count', titles[11], save=True)
+    group_plot(dfs[1],increments[0], 'size', xticklabels[4], xlabels[3], 'Trip Count', titles[13], save=True)
