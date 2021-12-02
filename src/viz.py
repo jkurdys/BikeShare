@@ -156,12 +156,12 @@ def group_plot(df, incr, agg_func, xticklabels,  xlabel, ylabel, title, save=Fal
     '''
     
     group= getattr(df.groupby(incr), agg_func)()/1000
-    ax= group.plot(figsize=(12,8), rot=70, fontsize=11)        
+    ax= group.plot(figsize=(14,7), rot=70, fontsize=11)        
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
-    # ax.set_xticks(list(range(len(xticklabels))))
+    ax.set_xticks(list(range(len(xticklabels))))
     ax.set_title(title)
-    # ax.set_xticklabels(xticklabels)
+    ax.set_xticklabels(xticklabels)
     if save:
         title = title[:12].replace(' ', '_')
         plt.savefig('/Users/Diogenes/Documents/take_homes/BikeShare/images/' + title + 'plot', dpi=125)
@@ -187,9 +187,9 @@ if __name__ == '__main__':
               'Bay Area BikeShare Station Map',
               'Bay Area BikeShare Station Use by Time of Day',
               'Bay Area BikeShare Most Popular Stations',
-              'Daily trips by day of week (thousands)',
-              'Trip count by month (thousands)',
-              'Weekday trip count by hour of day (thousands)']
+              'Daily Trip Counts (Thousands)',
+              'Monthly Trip Count (Thousands)',
+              'Weekday Trip Count by Time of Day (Thousands)']
 
     orders = [dfs[1]['Start Station'].value_counts().index[:5],
               dfs[1]['Start Station'].value_counts(ascending=True).index[:5],
@@ -198,13 +198,15 @@ if __name__ == '__main__':
 
     increments = ['hour', 'day', 'month']
 
-    months = []
+    months = ['']
     for i in range(trips.month.max()):
-        months.append(f'{i + 1}')
+        months.append(f'{i+1}')
+        month = dt.datetime.strptime(months[i+1], '%m')
+        months[i+1] = month.strftime('%b')
 
     hours = []
-    for i in range(trips.hour.max()):
-        months.append(f'{i + 1}')
+    for i in range(trips.hour.max()+1):
+        hours.append(f'{i}:00')
 
     xticklabels = [['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
                    ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
@@ -212,7 +214,7 @@ if __name__ == '__main__':
                    months,
                    hours]
 
-    xlabels = ['Day of Week', 'Weekend Day', 'Month of Year', 'Hour of the Day']
+    xlabels = ['Day of Week', 'Weekend Day', 'Month', 'Time of Day']
     
     # make_compbars(dfs[1], dfs[1], titles[0], titles[1], orders[0], orders[1], save=True)
     # make_compbars(dfs[5], dfs[4], titles[2], titles[3], orders[2], orders[3], save=True)
@@ -225,4 +227,5 @@ if __name__ == '__main__':
     # temp_heat_map = make_heatmap(heat_lst, titles[9], df= heat_df, time= True)
     # temp_heat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_heatmap_wTime.html')
     # group_plot(dfs[1],increments[1], 'size', xticklabels[1], xlabels[0], 'Trip Count', titles[11], save=True)
-    group_plot(dfs[1],increments[0], 'size', xticklabels[4], xlabels[3], 'Trip Count', titles[13], save=True)
+    # group_plot(dfs[1],increments[0], 'size', xticklabels[4], xlabels[3], 'Trip Count', titles[13], save=True)
+    group_plot(dfs[1],increments[2], 'size', xticklabels[3], xlabels[2], 'Trip Count', titles[12], save=True)
