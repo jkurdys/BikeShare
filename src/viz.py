@@ -9,6 +9,8 @@ import folium
 from folium.plugins import HeatMap, HeatMapWithTime
 import clean
 
+plt.style.use('seaborn-whitegrid')
+
 def make_compbars(df1, df2, title1, title2, order1, order2, save=False):
     fig, ax=plt.subplots(2, 1,  figsize=(12, 6))
 
@@ -209,23 +211,23 @@ if __name__ == '__main__':
         hours.append(f'{i}:00')
 
     xticklabels = [['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-                   ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                   ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'],
                    ['Saturday', 'Sunday'],
                    months,
                    hours]
 
     xlabels = ['Day of Week', 'Weekend Day', 'Month', 'Time of Day']
     
-    # make_compbars(dfs[1], dfs[1], titles[0], titles[1], orders[0], orders[1], save=True)
+    # make_compbars(dfs[1], dfs[1], titles[0], titles[1], orders[0], orders[1])
     # make_compbars(dfs[5], dfs[4], titles[2], titles[3], orders[2], orders[3], save=True)
-    # make_groupbars(dfs[1], increments[2], titles[7], xticklabels[3], xlabels[2], save=True)
-    # make_groupbars(dfs[1], increments[1], titles[5], xticklabels[1], xlabels[0], save=True)
+    # make_groupbars(dfs[1], increments[2], titles[7], xticklabels[3][1:], xlabels[2])
+    # make_groupbars(dfs[1], increments[1], titles[5], xticklabels[1], xlabels[0])
     # stat_map = make_map(dfs[0], titles[8])
     # stat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_map.html')
     # heat_map = make_heatmap(heat_lst, titles[10], df= None, time= False)
     # heat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_heatmap.html')
     # temp_heat_map = make_heatmap(heat_lst, titles[9], df= heat_df, time= True)
     # temp_heat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_heatmap_wTime.html')
-    # group_plot(dfs[1],increments[1], 'size', xticklabels[1], xlabels[0], 'Trip Count', titles[11], save=True)
-    # group_plot(dfs[1],increments[0], 'size', xticklabels[4], xlabels[3], 'Trip Count', titles[13], save=True)
-    group_plot(dfs[1],increments[2], 'size', xticklabels[3], xlabels[2], 'Trip Count', titles[12], save=True)
+    # group_plot(dfs[1],increments[1], 'size', xticklabels[1], xlabels[0], 'Trip Count', titles[11])
+    # group_plot(dfs[1],increments[0], 'size', xticklabels[4], xlabels[3], 'Trip Count', titles[13])
+    # group_plot(dfs[1],increments[2], 'size', xticklabels[3], xlabels[2], 'Trip Count', titles[12])
