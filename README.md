@@ -1,11 +1,21 @@
-# Kurdys BikeShare Project
+# BikeShare EDA Project
 
 ## Objective: 
-    - predict net rate of bike rentals for a give station *rate defined as (trips ended - trips started) / hr
-        - expect that the primary factors influencing rate will be:
-            - time of day
-            - weather
-            - station location
+    As part of a coding challenge I recently completed, I received the following assignment, which appears to be a variation on [an existing Kaggle challenge] (https://www.kaggle.com/c/bike-sharing-demand). The project description reads as follows (emphasis added):
+    
+    >Beachboys BikeShare is a bike share service provider where users can take and return bikes from any of 70 stations on their network. The company wants to leverage their data to better understand and, hopefully, optimize their operations. They are interested in exploring the potential for machine learning **to predict the number of bikes taken and returned to each station.**
+    
+    >The eventual goal is to construct a model that can **predict the net rate of bike renting for a given station (net rate defined as trips ended minus trips started at the station for a given hour).** However, we would like you to just focus on doing the preliminary steps of this work. For this task we would like you to **focus on first doing the exploratory data analysis of the data provided.** Then we would like you to do the necessary data manipulations to create what would be your modeling data set. Finally, we would like you to do a short writeup about your next steps, and what modeling approaches you would examine first. Again, as you go through the work, bear in mind that your goal would be to **forecast net demand by hour by station** but you are not expected to build any models within the time limit.
+    
+    Accordingly, for this phase of the project I will carry out the relevant EDA to identify the path for predicting net demand by hour by station.
+    
+## The Data Set
+
+    The data contains three CSV files with information on the stations, trips-taken and weather affecting the bikeshare system.
+    -the stations data includes six columns of information to identify the station, station location and station capacity
+    -the trips data includes six columns to uniquely identify each trip, the start time and location of each trip and the type of user
+    -finally, weather data captures roughly a year of meteorological records from five stations spread throughout the city in 24 columns that include metrics like temperature, dew point, humidity, wind speed, cloud coverage, etc.
+    While I expect weather to significantly impact demand, I approached the problem as fundamentally a question of station location, usage by time of day and time of year for the relatively stability of these features and because we can always layer the impact of weather on demand later once we understand how the flow of traffic from station to station, hour to hour and day to day affect demand.
             
 ## Execution
     - notebook walkthrough provides data preparation and code for wrangling into csv flat file
