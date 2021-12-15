@@ -25,10 +25,50 @@ Accordingly, I emphasized the features that helped trace the circulation of bike
 
 To begin, it helps to visualize the location of the stations in the BeachBoys BikeShare system. They cluster first in the northwest within the City of San Francisco and then moving southeast stretch out with less density from Redwood City through Palo Alto and Mountain View before forming a secondary cluster in San Jose.
 
-![](/images/bike_station_map.html "BeachBoys BikeShare Station Map") 
+<!-- /Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_map.html code goes here -->
 
-Given the relative density of the stations, I expected to see most usage in San Francisco and San Jose to a lesser extent.
-            
-## Execution
-- notebook walkthrough provides data preparation and code for wrangling into csv flat file
-- link to EDA in Tableau included in notebook along with path to future integration with weather data
+Given the relative density of the stations, I expected to see most usage in San Francisco and San Jose to a lesser extent. The following heatmap demonstrates San Francisco as the most active cluster, followed by San Jose and Mountain View, respectively.
+
+<!-- /Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_heatmap.html code goes here -->
+
+Besides high level geographic considerations like these, I also expected to see the most popular stations during the week to differ from the most popular weekend stations on the assumption that commuters would make up the bulk of weekday trips while tourism would fuel weekend use.
+
+<!-- /Users/Diogenes/Documents/take_homes/BikeShare/images/Top_5_Top_5_.png code goes here -->
+
+Trip counts segmented by weekday and weekend useage demonstrates that the top stations in each group are completely distinct with none of the top five weekday stations appearing among the top five weekend stations. It's also important to note that the most popular weekday stations are eight times more popular than the most popular weekend stations suggesting that there is considerable dropoff in use on weekends.
+
+<!-- /Users/Diogenes/Documents/take_homes/BikeShare/images/Daily_Trip_Cplot.png code goes here  -->
+
+Plotting the daily trip counts confirms the suspicion of weekend dropoff and further demonstrates that weekday usage is fairly stable remaining above 60k daily trips before tapering off slightly on Friday as the weekend approaches. This observation supports the overwhelming conclusion that **the majority of bikeshare useage is functional in the service of daily life rather than appealing to purely recreational interests**.
+
+>**the majority of bikeshare useage is functional in the service of daily life rather than appealing to purely recreational interests**
+
+By far the most significant activity of daily life that bikeshare providers service involves workweek commuter transportation between 8:00 a.m. and 5:00 p.m. that involves a bimodal distribution of traffic that climbs steadily from 6:00 a.m. to 8:00 a.m., falls until 10:00 a.m before reaching a saddle during the lunchtime hours and resuming its climb around 3:00 p.m., reaching a second, symmetrical peak around 5:00 p.m. and declining rapidly throughout "rush hour" until 7:00 p.m.
+
+<!-- /Users/Diogenes/Documents/take_homes/BikeShare/images/Weekday_tripplot.png code goes here  -->
+
+The following heatmap animates the changing pattern of station traffic according to the previous plot of hourly weekday usage.
+
+<!-- /Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_heatmap_wTime.html code goes here  -->
+
+While these visualizations illustrate aggregate activity throughout the day on weekdays, it may be of interest to determine whether hourly weekend use follows a different schedule. Sadly, given the relative disparity between weekday and weekend usage, I have not followed that lead here. It seems worth speculating that events such as professional sporting events, concerts and seasonal community organized events could drive a different pattern of weekend use and so would merit inclusion along with weather as irregular influences on station traffic.
+
+<!-- /Users/Diogenes/Documents/take_homes/BikeShare/images/day_Top_Stations_group.png code goes here  -->
+
+Examining the most popular stations grouped by day of week confirms a shift in usage patterns for more recreational pursuits toward the weekend. Indeed, only one station that appears among the most popular weekday stations on any day also appears among the most popular weekend stations. We see a shift on Friday as stations 55 and 65, the Transbay Terminal at Howard and Beale and the Townsend at 7th stations, respectively, fall out of the top five only to be replaced by stations 61 and 74 (2nd at Townsend and Steuart at Market) of which only the 2nd at Townsend remains popular throughout the weekend.
+
+<!-- /Users/Diogenes/Documents/take_homes/BikeShare/images/month_Top_Stations_group.png code goes here -->
+
+Speculation that recreation fuels distinct traffic patterns of its own receives further support when we zoom out to examine traffic at the annual level. On the annual scale we see that the more periphery waterfront stations like 60 (Embarcadero at Sansome) and, again, 61 (2nd at Townsend) experience more demand in the warm weather months from May to September. This slight shift from more centrally located stations during the week and cold weather months to waterfront adjacent stations on Friday, throughout the weekend and during warm weather months suggests that recreational use and weather does play a part in traffic patterns and would justify a deeper dive into the distictive patterns of weekend traffic and factoring weather conditions into a predictive model of demand.
+
+<!-- /Users/Diogenes/Documents/take_homes/BikeShare/images/Monthly_Tripplot.png code goes here -->
+
+Of course, not all seasonal variation can be accounted for in terms of weather, patterns of recreation or even the calendar of public events. In particular, the outsized presence of station 61 (2nd at Townsend) in August, September and October doesn't fit nicely into the theory of warm weather months feeding traffic to waterfront stations since it not only moves into the cooler weather months of autumn, but also coincides with an unexplained peak in October and sudden, rapid decline in bikeshare demand in November and December despite respectable demand in January the previous year. Some events are singular or, at any rate, difficult to predict and the unexpected peak in demand during the period the data was collected, September 2014 to September 2015, likely had more to do with the San Francisco Giants' World Series appearance and victory than with regular seasonal bikeshare demand patterns.
+
+## Considerations and Recommendations
+
+This exploratory data analysis supports predictive modeling that relies heavily features relevant to station location, time of day, day of week and, to a lesser extent, monthly and seasonal event calendars. Since location, daily timetables and both weekly and monthly calendars shape the bulk of demand, these features will provide the most impact for optimizing station inventory efficiency and provide a basis for forecasting without requiring significant model retraining and validation.
+
+Weather conditions also warrant significant consideration although this analysis has not evaluated which weather conditions merit consideration. While weather conditions can be modeled well in advance, the utility of this approach likely approximates the value of seasonal and monthly usage patterns, so the full impact of this approach cannot be carried out with long-term lead times and will require significant retraining, thus exposing the model to increased variability and requiring continuous data collection.
+
+Further analysis using profit curves to identify the optimal balance of long-term planning and short-term optimization of resources should be conducted provide insight into this decision.
