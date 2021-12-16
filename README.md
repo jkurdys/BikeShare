@@ -34,6 +34,7 @@ Given the relative density of the stations, I expected to see most usage in San 
 Besides high level geographic considerations like these, I also expected to see the most popular stations during the week to differ from the most popular weekend stations on the assumption that commuters would make up the bulk of weekday trips while tourism would fuel weekend use.
 
 <!-- /Users/Diogenes/Documents/take_homes/BikeShare/images/Top_5_Top_5_.png code goes here -->
+<!-- ![pie sentiment dist boulders](images/Top_5_Top_5_.png) -->
 
 Trip counts segmented by weekday and weekend useage demonstrates that the top stations in each group are completely distinct with none of the top five weekday stations appearing among the top five weekend stations. It's also important to note that the most popular weekday stations are eight times more popular than the most popular weekend stations suggesting that there is considerable dropoff in use on weekends.
 
