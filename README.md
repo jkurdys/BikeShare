@@ -42,18 +42,18 @@ To begin, it helps to visualize the location of the stations in the BeachBoys Bi
 <body>
     <table>
       <tr>
-        <th>
-        <embed src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik"
+        <td>
+        <embed src ="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik"
         title="hello"
         width="300"
         height="200"/>
-        </th>
-        <th>
+        </td>
+        <td>
         <embed src="https://github.com/jkurdys/BikeShare/blob/master/images/bike_station_map.html"
         title="hello"
          width="300"
          height="200"/>
-        </th>
+        </td>
       </tr>
        
 </table>
