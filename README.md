@@ -38,7 +38,7 @@ To begin, it helps to visualize the location of the stations in the BeachBoys Bi
     height="200"
     src="file:///Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_map.html">
 </iframe> -->
-<html>
+<!-- <html>
 <body>
     <table>
       <tr>
@@ -58,9 +58,11 @@ To begin, it helps to visualize the location of the stations in the BeachBoys Bi
        
 </table>
 </body>
-</html>
+</html> -->
 
-You can explore this map [as its own web page here](images/bike_station_map.html)
+![Bimodal Hourly Plot of Trips with Peaks at 8:00 a.m. and 5:00 p.m.](images/bike_station_map.png)
+
+You can explore this map [as its own web page here](https://htmlpreview.github.io/?https://github.com/jkurdys/BikeShare/blob/master/images/bike_station_map.html)
 
 
 Given the relative density of the stations, I expected to see most usage in San Francisco and San Jose to a lesser extent. The following heatmap demonstrates San Francisco as the most active cluster, followed by San Jose and Mountain View, respectively.
