@@ -7,6 +7,8 @@ import matplotlib as mlp
 import seaborn as sns
 import folium
 from folium.plugins import HeatMap, HeatMapWithTime
+import io
+from PIL import Image
 import clean
 
 plt.style.use('seaborn-whitegrid')
@@ -222,7 +224,10 @@ if __name__ == '__main__':
     # make_compbars(dfs[5], dfs[4], titles[2], titles[3], orders[2], orders[3], save=True)
     # make_groupbars(dfs[1], increments[2], titles[7], xticklabels[3][1:], xlabels[2])
     # make_groupbars(dfs[1], increments[1], titles[5], xticklabels[1], xlabels[0])
-    # stat_map = make_map(dfs[0], titles[8])
+    stat_map = make_map(dfs[0], titles[8])
+    img_data = stat_map._to_png(5)
+    img = Image.open(io.BytesIO(img_data))
+    img.save('bike_station_map.png')
     # stat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_map.html')
     # heat_map = make_heatmap(heat_lst, titles[10], df= None, time= False)
     # heat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_heatmap.html')
