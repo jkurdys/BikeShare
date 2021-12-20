@@ -60,14 +60,11 @@ To begin, it helps to visualize the location of the stations in the BeachBoys Bi
 </body>
 </html> -->
 
-![Bimodal Hourly Plot of Trips with Peaks at 8:00 a.m. and 5:00 p.m.](images/bike_station_map.png)
-
-You can explore this map [as its own web page here](https://github.com/jkurdys/BikeShare/blob/master/images/bike_station_map.html)
-
+![Bay Area BikeShare Station Map](images/bike_station_map.png)
 
 Given the relative density of the stations, I expected to see most usage in San Francisco and San Jose to a lesser extent. The following heatmap demonstrates San Francisco as the most active cluster, followed by San Jose and Mountain View, respectively.
 
-<!-- /Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_heatmap.html code goes here -->
+![Station Heatmap](bike_station_heatmap.png)
 
 Besides high level geographic considerations like these, I also expected to see the most popular stations during the week to differ from the most popular weekend stations on the assumption that commuters would make up the bulk of weekday trips while tourism would fuel weekend use.
 
@@ -88,6 +85,7 @@ By far the most significant activity of daily life that bikeshare providers serv
 The following heatmap animates the changing pattern of station traffic according to the previous plot of hourly weekday usage.
 
 <!-- /Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_heatmap_wTime.html code goes here  -->
+![Station Heatmap Over 24-hour Period](bike_station_heatmap_wTime.png)
 
 While these visualizations illustrate aggregate activity throughout the day on weekdays, it may be of interest to determine whether hourly weekend use follows a different schedule. Sadly, given the relative disparity between weekday and weekend usage, I have not followed that lead here. It seems worth speculating that events such as professional sporting events, concerts and seasonal community events could drive a different pattern of weekend use and so would merit inclusion along with weather as irregular influences on station traffic.
 
