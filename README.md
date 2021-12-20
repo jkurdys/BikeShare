@@ -26,7 +26,7 @@ Accordingly, I emphasized the features that helped trace the circulation of bike
 To begin, it helps to visualize the location of the stations in the BeachBoys BikeShare system. They cluster first in the northwest within the City of San Francisco and then moving southeast stretch out with less density from Redwood City through Palo Alto and Mountain View before forming a secondary cluster in San Jose.
 
 <!-- /Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_map.html code goes here -->
-<iframe id="inlineFrameExample"
+<!--<iframe id="inlineFrameExample"
     title="Inline Frame Example"
     width="300"
     height="200"
@@ -36,8 +36,23 @@ To begin, it helps to visualize the location of the stations in the BeachBoys Bi
     title="Inline Frame Example"
     width="300"
     height="200"
-    src="file:///images/bike_station_map.html">
-</iframe>
+    src="file:///Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_map.html">
+</iframe> -->
+<html>
+<body>
+    <table>
+      <tr>
+        <th>
+        <embed src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
+        </th>
+        <th>
+        <embed src="https://github.com/jkurdys/BikeShare/blob/master/images/bike_station_map.html">
+        </th>
+      </tr>
+       
+</table>
+</body>
+</html>
 
 You can explore this map [as its own web page here](images/bike_station_map.html)
 
