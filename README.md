@@ -25,41 +25,6 @@ Accordingly, I emphasized the features that helped trace the circulation of bike
 
 To begin, it helps to visualize the location of the stations in the BeachBoys BikeShare system. They cluster first in the northwest within the City of San Francisco and then moving southeast stretch out with less density from Redwood City through Palo Alto and Mountain View before forming a secondary cluster in San Jose.
 
-<!-- /Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_map.html code goes here -->
-<!--<iframe id="inlineFrameExample"
-    title="Inline Frame Example"
-    width="300"
-    height="200"
-    src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
-</iframe>
-<iframe id="inlineFrameExample"
-    title="Inline Frame Example"
-    width="300"
-    height="200"
-    src="file:///Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_map.html">
-</iframe> -->
-<!-- <html>
-<body>
-    <table>
-      <tr>
-        <td>
-        <embed src ="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik"
-        title="hello"
-        width="300"
-        height="200"/>
-        </td>
-        <td>
-        <embed src="https://github.com/jkurdys/BikeShare/blob/master/images/bike_station_map.html"
-        title="hello"
-         width="300"
-         height="200"/>
-        </td>
-      </tr>
-       
-</table>
-</body>
-</html> -->
-
 ![Bay Area BikeShare Station Map](images/bike_station_map.png)
 
 Given the relative density of the stations, I expected to see most usage in San Francisco and San Jose to a lesser extent. The following heatmap demonstrates San Francisco as the most active cluster, followed by San Jose and Mountain View, respectively.

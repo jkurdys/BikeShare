@@ -34,7 +34,7 @@ def make_compbars(df1, df2, title1, title2, order1, order2, save=False):
     if save:
         utitle1 = title1[:6].replace(' ', '_')
         utitle2 = title2[:6].replace(' ', '_', 2)
-        plt.savefig('/Users/Diogenes/Documents/take_homes/BikeShare/images/'+utitle1+utitle2, dpi=125)
+        plt.savefig('./images/'+utitle1+utitle2, dpi=125)
     
     else:
         plt.show()
@@ -58,7 +58,7 @@ def make_groupbars(df, incr, title, xticklabels, xlabel, save=False):
     
     if save:
         title = title[:13].replace(' ', '_')
-        plt.savefig('/Users/Diogenes/Documents/take_homes/BikeShare/images/'+ incr + '_' + title + 'group', dpi=125)
+        plt.savefig('./images/'+ incr + '_' + title + 'group', dpi=125)
     else:
         plt.show()
 
@@ -168,7 +168,7 @@ def group_plot(df, incr, agg_func, xticklabels,  xlabel, ylabel, title, save=Fal
     ax.set_xticklabels(xticklabels)
     if save:
         title = title[:12].replace(' ', '_')
-        plt.savefig('/Users/Diogenes/Documents/take_homes/BikeShare/images/' + title + 'plot', dpi=125)
+        plt.savefig('./images/' + title + 'plot', dpi=125)
     else:
         plt.show()
 
@@ -224,15 +224,11 @@ if __name__ == '__main__':
     # make_compbars(dfs[5], dfs[4], titles[2], titles[3], orders[2], orders[3], save=True)
     # make_groupbars(dfs[1], increments[2], titles[7], xticklabels[3][1:], xlabels[2])
     # make_groupbars(dfs[1], increments[1], titles[5], xticklabels[1], xlabels[0])
-    stat_map = make_map(dfs[0], titles[8])
-    img_data = stat_map._to_png(5)
-    img = Image.open(io.BytesIO(img_data))
-    img.save('bike_station_map.png')
-    # stat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_map.html')
+    # stat_map.save('./images/bike_station_map.html')
     # heat_map = make_heatmap(heat_lst, titles[10], df= None, time= False)
-    # heat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_heatmap.html')
+    # heat_map.save('./images/bike_station_heatmap.html')
     # temp_heat_map = make_heatmap(heat_lst, titles[9], df= heat_df, time= True)
-    # temp_heat_map.save('/Users/Diogenes/Documents/take_homes/BikeShare/images/bike_station_heatmap_wTime.html')
+    # temp_heat_map.save('./images/bike_station_heatmap_wTime.html')
     # group_plot(dfs[1],increments[1], 'size', xticklabels[1], xlabels[0], 'Trip Count', titles[11])
     # group_plot(dfs[1],increments[0], 'size', xticklabels[4], xlabels[3], 'Trip Count', titles[13])
     # group_plot(dfs[1],increments[2], 'size', xticklabels[3], xlabels[2], 'Trip Count', titles[12])

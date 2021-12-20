@@ -11,11 +11,11 @@ def retrieve_data(cloned = True):
     Returns stations, trips and weather data frames, respectively.
     '''
     if cloned:
-        stations = pd.read_csv('/Users/Diogenes/Documents/take_homes/BikeShare/data/station_data.csv')
-        trips = pd.read_csv('/Users/Diogenes/Documents/take_homes/BikeShare/data/trip_data.csv',
+        stations = pd.read_csv('./data/station_data.csv')
+        trips = pd.read_csv('./data/trip_data.csv',
                         parse_dates=['Start Date', 'End Date'], 
                         infer_datetime_format=True)
-        weather = pd.read_csv('/Users/Diogenes/Documents/take_homes/BikeShare/data/weather_data.csv')
+        weather = pd.read_csv('./data/weather_data.csv')
     else:
         path = input('Enter file path: ')
         stations = pd.read_csv(f'{path}station_data.csv')
